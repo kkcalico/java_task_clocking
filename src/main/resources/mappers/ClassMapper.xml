@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hstc.task_clocking.dao.ClassMapper">
+    <!-- 通过 identification 查询老师的详细信息及所管理的班级 -->
+    <select id="queryTeacherWithClass"  resultType="Class" parameterType="String">
+        SELECT
+            u.identification AS teacherId,
+            c.classId,
+            c.className
+        FROM
+            user u
+                LEFT JOIN
+            classes c ON u.identification = c.teacherId
+        WHERE
+            u.identification = #{identification};
+    </select>
+
+</mapper>

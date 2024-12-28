@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hstc.task_clocking.dao.student.Student_CheckinMapper">
+    <insert id="AddCheckin" parameterType="Checkin">
+        INSERT INTO Checkins (UserID, TaskID, CheckinTime, Content, Attachment, Status)
+        VALUES (#{userId}, #{taskId}, #{checkinTime}, #{content}, #{attachment}, COALESCE(#{status}, '已确认'))
+    </insert>
+
+    <select id="QueryCheckinList" parameterType="Checkin">
+        SELECT * FROM Checkins
+    </select>
+</mapper>

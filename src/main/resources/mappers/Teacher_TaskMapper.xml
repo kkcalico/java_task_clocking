@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hstc.task_clocking.dao.teacher.Teacher_TaskMapper">
+    <insert id="AddTask" parameterType="Task">
+        INSERT INTO tasks (TeacherID, ClassID, Title, Content,
+                          Deadline, StartDate, EndDate, Attachment)
+        VALUES (#{teacherID}, #{classID}, #{title}, #{content},
+                #{deadline}, #{startDate}, #{endDate}, #{attachment})
+    </insert>
+    
+    <select id="QueryTaskWithTeacherID" resultType="Task">
+        select * from tasks where teacherID=#{teacherID}
+    </select>
+    
+    <delete id="DeleteTask">
+        delete from tasks where homeworkID=#{homeworkID}
+    </delete>
+
+    <update id="UpdateTask" parameterType="Task">
+        UPDATE tasks
+        SET
+            ClassID = #{classID},
+            Title = #{title},
+            Content = #{content},
+            Deadline = #{deadline},
+            StartDate = #{startDate},
+            EndDate = #{endDate},
+            Attachment = #{attachment}
+        WHERE
+            homeworkID=#{homeworkID}
+    </update>
+
+    <select id="QueryTaskWithHomeworkID" resultType="Task">
+        SELECT * FROM
+            tasks
+        WHERE
+            homeworkID = #{homeworkID}
+    </select>
+</mapper>
